@@ -1,11 +1,20 @@
 INICIO
-  Definir opcion_menu, cantidad_producto Como Entero
+  Definir opcion_menu, cantidad_producto, ventas_dia Como Entero
   Definir precio_producto, subtotal_acumulado Como Real
+  Definir porcentaje_desc, monto_desc, subtotal_con_desc, iva, total_pagar Como Real
+  Definir pago_cliente, cambio Como Real
+  Definir caja_total, total_descuentos, venta_mayor, venta_menor, promedio Como Real
+
+  ventas_dia = 0
+  caja_total = 0
+  total_descuentos = 0
+  venta_mayor = 0
+  venta_menor = 0
 
   REPETIR
     Escribir "=== SISTEMA DE CAJA ==="
     Escribir "1. Registrar venta"
-    Escribir "2. Ver resumen parcial del dia"
+    Escribir "2. Ver resumen del dia"
     Escribir "3. Cerrar caja y salir"
     Escribir "Elige una opcion: "
     Leer opcion_menu
@@ -35,17 +44,16 @@ INICIO
 
       HASTA QUE precio_producto == 0
 
-      Escribir "-> El subtotal de esta venta es: Q", subtotal_acumulado
+      SI subtotal_acumulado > 0 ENTONCES
+        SI subtotal_acumulado < 100 ENTONCES
+          porcentaje_desc = 0
+        SINO SI subtotal_acumulado < 500 ENTONCES
+          porcentaje_desc = 0.05
+        SINO
+          porcentaje_desc = 0.10
+        FIN SI
 
-    SINO SI opcion_menu == 2 ENTONCES
-      Escribir "Esta opcion la vamos a programar para el hito 2."
-    
-    SINO SI opcion_menu == 3 ENTONCES
-      Escribir "Cerrando el sistema. ¡Nos vemos!"
-    
-    SINO
-      Escribir "Error: Esa opcion no existe. Elige 1, 2 o 3."
-    FIN SI
-
-  HASTA QUE opcion_menu == 3
-FIN
+        monto_desc = subtotal_acumulado * porcentaje_desc
+        subtotal_con_desc = subtotal_acumulado - monto_desc
+        iva = subtotal_con_desc * 0.12
+        total_pagar = subtotal_con_desc + iva
