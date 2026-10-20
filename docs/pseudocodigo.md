@@ -57,3 +57,63 @@ INICIO
         subtotal_con_desc = subtotal_acumulado - monto_desc
         iva = subtotal_con_desc * 0.12
         total_pagar = subtotal_con_desc + iva
+
+        REPETIR
+          Escribir "Total a pagar: Q", total_pagar
+          Escribir "Ingrese el pago del cliente: Q"
+          Leer pago_cliente
+
+          SI pago_cliente < total_pagar ENTONCES
+            Escribir "Error: El dinero no alcanza."
+          FIN SI
+        HASTA QUE pago_cliente >= total_pagar
+
+        cambio = pago_cliente - total_pagar
+
+        Escribir "--- RECIBO ---"
+        Escribir "Subtotal: Q", subtotal_acumulado
+        Escribir "Descuento: Q", monto_desc
+        Escribir "IVA: Q", iva
+        Escribir "Total: Q", total_pagar
+        Escribir "Su cambio es: Q", cambio
+
+        ventas_dia = ventas_dia + 1
+        caja_total = caja_total + total_pagar
+        total_descuentos = total_descuentos + monto_desc
+
+        SI ventas_dia == 1 ENTONCES
+          venta_mayor = total_pagar
+          venta_menor = total_pagar
+        SINO
+          SI total_pagar > venta_mayor ENTONCES
+            venta_mayor = total_pagar
+          FIN SI
+          SI total_pagar < venta_menor ENTONCES
+            venta_menor = total_pagar
+          FIN SI
+        FIN SI
+      FIN SI
+
+    SINO SI opcion_menu == 2 ENTONCES
+      SI ventas_dia == 0 ENTONCES
+        Escribir "Aun no hay ventas registradas."
+      SINO
+        promedio = caja_total / ventas_dia
+        Escribir "--- RESUMEN DEL DIA ---"
+        Escribir "Ventas totales: ", ventas_dia
+        Escribir "Ingresos totales: Q", caja_total
+        Escribir "Total de descuentos: Q", total_descuentos
+        Escribir "Venta mayor: Q", venta_mayor
+        Escribir "Venta menor: Q", venta_menor
+        Escribir "Promedio de venta: Q", promedio
+      FIN SI
+
+    SINO SI opcion_menu == 3 ENTONCES
+      Escribir "Cerrando el sistema. ¡Nos vemos!"
+    
+    SINO
+      Escribir "Error: Esa opcion no existe. Elige 1, 2 o 3."
+    FIN SI
+
+  HASTA QUE opcion_menu == 3
+FIN
