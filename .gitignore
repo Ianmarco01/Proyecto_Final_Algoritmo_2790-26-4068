@@ -1,0 +1,9 @@
+main.exe
+programa.exe
+*.exe
+*.out
+*.o
+
+
+.vscode/
+.DS_Store
