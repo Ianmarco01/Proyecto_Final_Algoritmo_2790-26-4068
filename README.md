@@ -18,3 +18,4 @@ Una vez que el código esté compilado, puedes iniciar el programa en la consola
 * **En Linux / Mac:** Escribe `./caja` en la terminal.
 
 ## Capturas de Pantalla de Ejecución
+Prueba para ver hito 2
