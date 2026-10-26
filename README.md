@@ -101,3 +101,6 @@ A continuación se documentan los 5 casos de prueba mínimos solicitados:
 
 ### 5. Pago menor al total
 ![Caso 5](caso5.png)
+
+## Enlace al video
+https://youtu.be/HmUa61aXbwg
